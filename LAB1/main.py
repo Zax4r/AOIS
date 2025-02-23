@@ -5,12 +5,6 @@ import unittest
 
 MAX_BITS = 8
 
-# a = [0]*32
-# b = [0]*32
-# a[7] = 1
-# b[7] = 1
-# print(Operations.sum_IEE754(a,b))
-
 def main():
     Comp = Composer(MAX_BITS)
     Comp.read_number()
