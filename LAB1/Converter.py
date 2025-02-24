@@ -85,27 +85,45 @@ class Converter:
             return [0]*32
         
         celaya_b = []
-        while celaya>0:
+        drobnaya_b = []
+        while celaya>0 and (len(drobnaya_b)+len(celaya_b))<32:
             celaya_b.append(celaya%2)
             celaya = celaya//2
         celaya_b.reverse()
 
-        drobnaya_b = []
         while drobnaya > 0 and (len(drobnaya_b)+len(celaya_b))<32 :
             drobnaya *= 2
             drobnaya_b.append(int(drobnaya//1))
             drobnaya = drobnaya%1
 
-        mant = celaya_b[1:]+drobnaya_b
-        mant = mant + ([0]*(23 - len(mant)))
-        exp = len(celaya_b)-1
-        
-        exp_b = [0] * self.MAX_BITS
-        for index in range(len(exp_b)):
-            exp_b[index] = exp%2
-            exp = exp//2
+        if not celaya_b:
+            shift = 0
+            while drobnaya_b and drobnaya_b[0] == 0:
+                drobnaya_b.pop(0)
+                shift -= 1
+            if not drobnaya_b: 
+                return [0] * 32
+
+            mant = drobnaya_b[1:]  
+            exp = shift - 1 
+        else:
+            mant = celaya_b[1:] + drobnaya_b
+            exp = len(celaya_b) - 1  
+
+
+        mant = mant + ([0] * (23 - len(mant)))
+
+        exp_real = exp + 127
+        exp_b = []
+        while exp_real > 0:
+            exp_b.append(exp_real % 2)
+            exp_real //= 2
         exp_b.reverse()
-        exp_real = Operations.sum(exp_b,[0,1,1,1,1,1,1,1])
-        return [0]+exp_real+mant
+
+        exp_b = [0] * (8 - len(exp_b)) + exp_b
+
+        res = [0] + exp_b + mant
+        return res[:32]
+
 
         

@@ -13,6 +13,7 @@ def main():
     Comp.proiz()
     Comp.delenie()
     Comp.sum_IEE754()
+    
 
 if __name__ == "__main__":
-    unittest.main()
+    main()
