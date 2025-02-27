@@ -97,15 +97,11 @@ class Converter:
             drobnaya = drobnaya%1
 
         if not celaya_b:
-            shift = 0
-            while drobnaya_b and drobnaya_b[0] == 0:
-                drobnaya_b.pop(0)
-                shift -= 1
-            if not drobnaya_b: 
-                return [0] * 32
-
+            old_len = len(drobnaya_b)
+            drobnaya_b = Operations.delete_zeros(drobnaya_b)
+            shift = len(drobnaya_b) - old_len
             mant = drobnaya_b[1:]  
-            exp = shift - 1 
+            exp = shift-1 
         else:
             mant = celaya_b[1:] + drobnaya_b
             exp = len(celaya_b) - 1  
