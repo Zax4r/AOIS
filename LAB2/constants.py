@@ -1,0 +1,5 @@
+LITERALS = "abcde"
+LOGIC = [0,1]
+BINARY_OPERANDS = "&|>~"
+UNARY_OPERANDS = "!"
+
