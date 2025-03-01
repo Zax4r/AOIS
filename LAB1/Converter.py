@@ -1,10 +1,10 @@
 from typing import List
 from Operations import Operations
-from Operations import DROB
+from constants import *
 class Converter:
 
-    def __init__(self,mb: int):
-        self.MAX_BITS = mb
+    def __init__(self):
+        self.MAX_BITS = MAX_BITS
    
     def D_to_B_forward(self,decimal: int) -> List[int]:
         res = [0] * self.MAX_BITS
@@ -66,8 +66,8 @@ class Converter:
             return 0
         
         poryadok =[0] + bin[1:9]
-        deci_poryadok = self.B_to_D_forward(poryadok) - 127
-        if deci_poryadok == 128:
+        deci_poryadok = self.B_to_D_forward(poryadok) - EXP_CONST
+        if deci_poryadok == (EXP_CONST+1):
             return "-Inf" if bin[0] else "Inf"
         
         mant = [1]+bin[9:]
@@ -82,16 +82,16 @@ class Converter:
     def D_to_B_IEE754(self,number: float) -> List[int]:
         celaya,drobnaya = number//1,number%1
         if number == 0:
-            return [0]*32
+            return [0]*IEEE754_LEN
         
         celaya_b = []
         drobnaya_b = []
-        while celaya>0 and (len(drobnaya_b)+len(celaya_b))<32:
+        while celaya>0 and (len(drobnaya_b)+len(celaya_b))<IEEE754_LEN:
             celaya_b.append(celaya%2)
             celaya = celaya//2
         celaya_b.reverse()
 
-        while drobnaya > 0 and (len(drobnaya_b)+len(celaya_b))<32 :
+        while drobnaya > 0 and (len(drobnaya_b)+len(celaya_b))<IEEE754_LEN :
             drobnaya *= 2
             drobnaya_b.append(int(drobnaya//1))
             drobnaya = drobnaya%1
@@ -107,19 +107,19 @@ class Converter:
             exp = len(celaya_b) - 1  
 
 
-        mant = mant + ([0] * (23 - len(mant)))
+        mant = mant + ([0] * (MANT_LEN - len(mant)))
 
-        exp_real = exp + 127
+        exp_real = exp + EXP_CONST
         exp_b = []
         while exp_real > 0:
             exp_b.append(exp_real % 2)
             exp_real //= 2
         exp_b.reverse()
 
-        exp_b = [0] * (8 - len(exp_b)) + exp_b
+        exp_b = [0] * (MAX_BITS - len(exp_b)) + exp_b
 
         res = [0] + exp_b + mant
-        return res[:32]
+        return res[:IEEE754_LEN]
 
 
         

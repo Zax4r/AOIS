@@ -3,10 +3,8 @@ from test_Operations import OperationsTest
 from test_Conventer import Converter_to_B_Test,Converter_to_D_Test
 import unittest
 
-MAX_BITS = 8
-
 def main():
-    Comp = Composer(MAX_BITS)
+    Comp = Composer()
     Comp.read_number()
     Comp.read_number()
     Comp.sum()
@@ -16,4 +14,4 @@ def main():
     
 
 if __name__ == "__main__":
-    main()
+    unittest.main()

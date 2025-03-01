@@ -3,7 +3,7 @@ from Converter import Converter
 
 class Converter_to_B_Test(unittest.TestCase):
     def setUp(self):
-        self.conv = Converter(8)
+        self.conv = Converter()
     
     def test_forward(self):
         self.assertEqual(self.conv.D_to_B_forward(73),[0, 1, 0, 0, 1, 0, 0, 1])
@@ -19,7 +19,7 @@ class Converter_to_B_Test(unittest.TestCase):
 
 class Converter_to_D_Test(unittest.TestCase):
     def setUp(self):
-        self.conv = Converter(8)
+        self.conv = Converter()
     
     def test_forward(self):
         self.assertEqual(self.conv.B_to_D_forward([0, 1, 0, 0, 1, 0, 0, 1]),73)
