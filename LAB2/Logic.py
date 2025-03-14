@@ -21,6 +21,7 @@ class Logic:
         SDNF,NSKF,res_bin = [],[],[]
         SDNF_bin,NSKF_bin = [],[]
         arguments = Parser.get_arguments(input_string)
+        arguments.sort()
         input_string = Parser.delete_tabulation(input_string)
         ILogic.print_arguments(arguments)
         for string,bits in Parser.work_w_str(input_string,arguments):
