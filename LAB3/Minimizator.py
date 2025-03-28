@@ -75,12 +75,12 @@ class Minimizator:
         implicants = final
         constituents = FORM
         res = {}
-        for constituent in constituents:
-            literals_to_find = Minimizator.find_literals(constituent)
-            res[constituent] = []
-            for implicant in implicants:
-                literals_we_have = Minimizator.find_literals(implicant)
-                if literals_we_have.issubset(literals_to_find):
-                    res[constituent].append(implicant)
+        for implicant in implicants:
+            literals_we_have = Minimizator.find_literals(implicant)
+            res[implicant] = set()
+            for constituent in constituents:
+                literals_in_constituent = Minimizator.find_literals(constituent)
+                if literals_we_have.issubset(literals_in_constituent):
+                    res[implicant].add(constituent)
         return res
         

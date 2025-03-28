@@ -6,39 +6,40 @@ class ILogic_v2:
 
     @staticmethod
     def print_raschetn(res: List):
-        print("SDNF")
         for i in range(len(res)):
             final = "|".join(res[i])
             print(f"Step{i+1}: {final}")
+        ILogic_v2.print()
 
     @staticmethod
     def print_raschetn_SKNF(res: List):
-        print("SKNF")
         for i in range(len(res)):
             final = "&".join(res[i])
             print(f"Step{i+1}: {final}")
+        ILogic_v2.print()        
 
     @staticmethod
-    def print_tabl_raschetn(res: Dict):
+    def print_tabl_raschetn(res: Dict, original = List):
+        print(f"Конец этапа склеивания: {original}")
+
         values = set()
         for value in res.values():
-            for v in value:
-                values.add(v)
+            values = values.union(value)
 
         print(end=" "*8)
-        for key in res.keys():
-            print(' '+str(key),end='  ')
+        for val in values:
+            print(' '+str(val),end='  ')
         print()
 
-        for val in values:
-            print(f"{val}"+(8-len(val))*' ',end="")
-            for key in res.keys():
+        for key in res.keys():
+            print(f"{key}"+(8-len(key))*' ',end="")
+            for val in values:
                 if val in res[key]:
-                    print(' '*(len(key)//2 + 1) +  "+" + ' '*(len(key)//2 + 1),end="")
+                    print(' '*(len(val)//2 + 1) +  "+" + ' '*(len(val)//2 + 1),end="")
                 else:
-                    print(' '*(len(key)//2 + 1) +  "-" + ' '*(len(key)//2 + 1),end="")
+                    print(' '*(len(val)//2 + 1) +  "-" + ' '*(len(val)//2 + 1),end="")
             print()
-        print(end='\n\n')
+        ILogic_v2.print()
 
     @staticmethod
     def print_matrix(matrix,f,s,argsY,argsX):
@@ -53,13 +54,12 @@ class ILogic_v2:
             for elem in matrix[i]:
                 print(elem,end = '\t')
             print()
-        f = "&".join(f)
-        s = "|".join(s)
-        print("SKNF:",f)
-        print("SDNF:",s)
+        print("result SDNF:","|".join(f))
+        print("result SKNF:","&".join(s))
+        ILogic_v2.print()
 
-    def print(s: str):
-        print(s)
+    def print(s: str = ""):
+        print(f"{s}\n***********************************",end="\n")
 
 
     
