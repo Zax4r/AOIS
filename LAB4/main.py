@@ -29,7 +29,7 @@ def get_D8421_1():
     one = [0]*(LEN_OF_TETRADA-1)+[1]
     for i in range(10):
         res = Binary_helper.sum_b(values,one)
-        print(values,'\t\t',res)
+        print(*values,'\t\t',*res)
         values = res
 
 if __name__ == "__main__":
