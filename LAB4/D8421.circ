@@ -60,6 +60,12 @@
       <a name="appearance" val="NewPins"/>
       <a name="width" val="4"/>
     </comp>
+    <comp lib="0" loc="(210,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="10unsigned"/>
+      <a name="width" val="4"/>
+    </comp>
     <comp lib="0" loc="(270,210)" name="Splitter">
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
@@ -68,6 +74,13 @@
       <a name="facing" val="west"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
+    </comp>
+    <comp lib="0" loc="(770,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="radix" val="10unsigned"/>
+      <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(830,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -94,13 +107,16 @@
     <comp lib="1" loc="(690,780)" name="OR Gate">
       <a name="inputs" val="3"/>
     </comp>
-    <comp lib="8" loc="(494,300)" name="Text">
+    <comp lib="8" loc="(490,300)" name="Text">
       <a name="text" val="Y2"/>
     </comp>
-    <comp lib="8" loc="(526,238)" name="Text">
+    <comp lib="8" loc="(525,235)" name="Text">
       <a name="text" val="Y1"/>
     </comp>
-    <wire from="(180,220)" to="(270,220)"/>
+    <wire from="(180,220)" to="(240,220)"/>
+    <wire from="(210,160)" to="(240,160)"/>
+    <wire from="(240,160)" to="(240,220)"/>
+    <wire from="(240,220)" to="(270,220)"/>
     <wire from="(270,210)" to="(270,220)"/>
     <wire from="(290,170)" to="(360,170)"/>
     <wire from="(290,180)" to="(350,180)"/>
@@ -157,6 +173,8 @@
     <wire from="(690,780)" to="(730,780)"/>
     <wire from="(730,300)" to="(730,780)"/>
     <wire from="(750,220)" to="(750,260)"/>
-    <wire from="(750,220)" to="(830,220)"/>
+    <wire from="(750,220)" to="(770,220)"/>
+    <wire from="(770,160)" to="(770,220)"/>
+    <wire from="(770,220)" to="(830,220)"/>
   </circuit>
 </project>
