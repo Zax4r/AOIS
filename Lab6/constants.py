@@ -1,0 +1,2 @@
+SIZE = 20
+ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
