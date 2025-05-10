@@ -8,4 +8,8 @@ if __name__ == "__main__":
     a['Mogilev'] = '3'
     a['Molodechno'] = '4'
     print(a)
+    del a['Mogilev']
+    a['Minsk'] = "Capital"
+    a['Moba'] = '5'
+    print(a)
     unittest.main()

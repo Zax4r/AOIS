@@ -15,4 +15,4 @@ class Row:
         self.Pi: str = data
         
     def __str__(self):
-        return f'V:{self.V},h:{self.h},U:{self.U},Pi:{self.Pi}'
+        return f'key:{self.key},V:{self.V},h:{self.h},U:{self.U},Pi:{self.Pi}'
