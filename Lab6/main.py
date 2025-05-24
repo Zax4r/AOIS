@@ -12,4 +12,3 @@ if __name__ == "__main__":
     a['Minsk'] = "Capital"
     a['Moba'] = '5'
     print(a)
-    unittest.main()
